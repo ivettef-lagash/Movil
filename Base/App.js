@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Button } from "react-native";
+import { StyleSheet, View, Button, ImageBackground } from "react-native";
 import Indice from "./components/Indice";
+import sinLogo from "./assets/sinLogo.png";
+import style from "./components/styles/styles";
+import Puntos from "././components/Puntajes";
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      show: false
+    };
+    this.mostrar = {
       show: false
     };
   }
@@ -20,12 +26,17 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={styles.MainContainer}>
-        {/*Here we will return the view when state is true 
-        and will return false if state is false*/}
-        {this.state.show ? <Indice></Indice> : null}
-        <Button title="Ver partidos" onPress={this.ShowHideComponent} />
-      </View>
+      <ImageBackground
+        source={sinLogo}
+        style={style.background}
+        imageStyle={style.logo}
+      >
+        <View style={styles.MainContainer}>
+          {this.state.show ? <Indice></Indice> : null}
+          <Button title="Ver partidos" onPress={this.ShowHideComponent} />
+          <Puntos></Puntos>
+        </View>
+      </ImageBackground>
     );
   }
 }

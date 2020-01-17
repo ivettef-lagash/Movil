@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Button, Alert } from "react-native";
 import { Table, TableWrapper, Row, Cell } from "react-native-table-component";
-import usersApi from "../api/api";
 
 export default class TablaJugadores extends Component {
   constructor(props) {
@@ -26,9 +25,7 @@ export default class TablaJugadores extends Component {
     }
   };
 
-  async render() {
-    const apiGet = await usersApi().getMatch();
-    console.log(apiGet.data[0]);
+  render() {
     const state = this.state;
     const element = (data, index) => (
       <View

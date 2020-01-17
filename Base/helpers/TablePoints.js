@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
+import { useDispatch } from "react-redux";
 import {
   Button,
   Table,
@@ -21,6 +22,8 @@ export default class TablaPuntos extends Component {
   render() {
     let flag1 = 0;
     let flag2 = 0;
+    let flag3 = 0;
+    let flag4 = 0;
     let tableHead = ["", "Puntos", "Sets", ""];
     let tableData = [
       ["Jugador 1", `${this.state.Puntaje1}`, `${this.state.set1}`, "4"]
@@ -30,11 +33,37 @@ export default class TablaPuntos extends Component {
     ];
     const AddArray1 = () => {
       flag1 = this.state.Puntaje1 + 1;
+      if (flag1 == 15) {
+        flag3 = this.state.set1 + 1;
+        this.setState({ set1: flag3 });
+        flag1 = 0;
+      }
+      if (flag3 == 3) {
+        Alert.alert("GANA EL JUGADOR 1");
+        flag3 = 0;
+        this.setState({ set2: flag3 });
+        this.setState({ set1: flag3 });
+        this.setState({ Puntaje2: flag3 });
+        this.setState({ Puntaje1: flag3 });
+      }
       this.setState({ Puntaje1: flag1 });
     };
 
     const AddArray2 = () => {
       flag2 = this.state.Puntaje2 + 1;
+      if (flag2 == 15) {
+        flag4 = this.state.set2 + 1;
+        this.setState({ set2: flag4 });
+        flag2 = 0;
+      }
+      if (flag4 == 3) {
+        Alert.alert("GANA EL JUGADOR 2");
+        flag4 = 0;
+        this.setState({ set2: flag4 });
+        this.setState({ set1: flag4 });
+        this.setState({ Puntaje2: flag4 });
+        this.setState({ Puntaje1: flag4 });
+      }
       this.setState({ Puntaje2: flag2 });
     };
 
